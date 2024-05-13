@@ -1,4 +1,9 @@
+
 import json
+import networkx as nx
+import matplotlib.pyplot as plt
+
+
 def txt_json(fichier):
     fic = open(fichier, 'r',encoding='utf8')
     fic_json = open("data.json",'w')
@@ -21,24 +26,23 @@ def txt_json(fichier):
     with open("data.json", "w") as f:
         json.dump(films,f,indent=4,ensure_ascii=False)
 
-    
 
      
-txt_json("data_2.txt")
+txt_json("data_100.txt")
 
-
-def collaborateurs(acteurs1, acteurs2):
-    with open("data.json", "r") as f:
+def json_vers_nx(chemin):
+    G = nx.Graph()
+    with open(chemin, "r") as f:
         data = json.load(f)
-    ens = set()
-    for film in data:
-        for acteurs in film.values():
-            for acteur in acteurs:
-                if acteurs1 == acteur or acteurs2 == acteur :
-                    ens.update(acteurs)
+        for film in data:
+            acteurs = film.get("collaborateurs", [])
+            for i in range(len(acteurs)):
+                for j in range(i+1, len(acteurs)):
+                    G.add_edge(acteurs[i], acteurs[j])
+    return G
 
-    return ens
-
-
-print(collaborateurs("Anna Lizaran","Harrison Ford")) 
-    
+G = json_vers_nx("data.json")
+plt.clf()
+nx.draw(G)
+plt.show()
+             
