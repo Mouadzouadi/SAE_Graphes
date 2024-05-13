@@ -41,7 +41,4 @@ def json_vers_nx(chemin):
                     G.add_edge(acteurs[i], acteurs[j])
     return G
 
-G = json_vers_nx("data.json")
-#plt.clf()
-#nx.draw(G)
-#plt.show()
+  
