@@ -40,24 +40,3 @@ def json_vers_nx(chemin):
                 for j in range(i+1, len(acteurs)):
                     G.add_edge(acteurs[i], acteurs[j])
     return G
-
-G = json_vers_nx("data.json")
-plt.clf()
-nx.draw(G)
-plt.show()
-                
-
-def collaborateurs_communs(acteurs1, acteurs2):
-    with open("data.json", "r") as f:
-        data = json.load(f)
-    ens = set()
-    for film in data:
-        for acteurs in film.values():
-            for acteur in acteurs:
-                if acteurs1 == acteur or acteurs2 == acteur :
-                    ens.update(acteurs)
-
-    return ens
-
-
-print(collaborateurs_communs("Anna Lizaran","Harrison Ford")) 
