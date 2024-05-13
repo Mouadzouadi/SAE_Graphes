@@ -41,7 +41,6 @@ def json_vers_nx(chemin):
                     G.add_edge(acteurs[i], acteurs[j])
     return G
 
-
 G = json_vers_nx("data.json")
 plt.clf()
 nx.draw(G)
@@ -62,6 +61,43 @@ def collaborateurs_communs(acteurs1, acteurs2):
 
 
 print(collaborateurs_communs("Anna Lizaran","Harrison Ford")) 
+    
+
+def collaborateurs_proches(G,u,k):
+    """Fonction renvoyant l'ensemble des acteurs à distance au plus k de l'acteur u dans le graphe G. La fonction renvoie None si u est absent du graphe.
+    
+    Parametres:
+        G: le graphe
+        u: le sommet de départ
+        k: la distance depuis u
+    """
+    if u not in G.nodes:
+        print(u,"est un ilustre inconnu.")
+        return None
+    collaborateurs = set()
+    collaborateurs.add(u)
+
+    for i in range(k):
+        collaborateurs_directs = set()
+        for c in collaborateurs:
+            for voisin in G.adj[c]:
+                if voisin not in collaborateurs:
+                    collaborateurs_directs.add(voisin)
+        collaborateurs = collaborateurs.union(collaborateurs_directs)
+    return collaborateurs
+
+ens = collaborateurs_proches(G,"Alexy wiciak",2)
 
 
+def est_proche(G, u, v,k):
+    """Fonction renvoyant True si u et v sont reliés dans le graphe G, False sinon.
+    
+    Parametres:
+        G: le graphe
+        u: un sommet
+        v: un sommet
+    """
+    return u in collaborateurs_proches(G,v,k)
 
+
+print(est_proche(G,"John Cazale","Harrison Ford"))
