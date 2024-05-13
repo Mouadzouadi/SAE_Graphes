@@ -28,7 +28,7 @@ def txt_json(fichier):
 
 
      
-#txt_json("data_100.txt")
+txt_json("data_100.txt")
 
 def json_vers_nx(chemin):
     G = nx.Graph()
@@ -42,9 +42,9 @@ def json_vers_nx(chemin):
     return G
 
 G = json_vers_nx("data.json")
-#plt.clf()
-#nx.draw(G)
-#plt.show()
+plt.clf()
+nx.draw(G)
+plt.show()
                 
 
 def collaborateurs_communs(acteurs1, acteurs2):
@@ -60,5 +60,4 @@ def collaborateurs_communs(acteurs1, acteurs2):
     return ens
 
 
-#print(collaborateurs_communs("Anna Lizaran","Harrison Ford")) 
-    
+print(collaborateurs_communs("Anna Lizaran","Harrison Ford")) 
