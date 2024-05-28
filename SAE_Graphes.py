@@ -162,3 +162,49 @@ def distance(G,u,v):
         return nx.shortest_path_length(G,u,v) # Utilisation de la fonction de NetworkX pour calculer la distance
     except nx.NetworkXNoPath: # Si aucun chemin n'existe entre u et v
         return None
+
+def distance(G,u,v):
+    """Fonction renvoyant la distance entre u et v dans le graphe G. La fonction renvoie None si u ou v sont absents du graphe.
+    
+    Parametres:
+        G: le graphe
+        u: un sommet
+        v: un sommet
+
+    Complexité: O(n+e) où n est le nombre de sommets et E le nombre d'arêtes du graphe.
+    """
+    if u not in G.nodes:
+        return None
+    if v not in G.nodes:
+        return None
+    try:
+        return nx.shortest_path_length(G,u,v) # Utilisation de la fonction de NetworkX pour calculer la distance
+    except nx.NetworkXNoPath: # Si aucun chemin n'existe entre u et v
+        return None
+
+
+
+def centralite(G, u):
+    """Fonction renvoyant la centralité de l'acteur u dans le graphe G. La fonction renvoie None si u est absent du graphe.
+
+    Args:
+        G (Graphe): le graphe
+        u (String): le sommet, un acteur
+
+    Returns:
+        int: la centralité de l'acteur u dans le graphe G. La fonction renvoie None si u est absent du graphe.
+
+    Complexité: O(N(N+E)) où N est le nombre de sommets et E le nombre d'arêtes du graphe.
+
+    """
+    if u not in G.nodes:
+        return None
+    centralite = 0
+    for voisin in G.nodes:
+        if voisin != u:
+            d = distance(G,u,voisin)
+            if d is not None and d > centralite:
+                centralite = d
+    return centralite
+
+#print(centralite(G,"Jennifer Salt"))
