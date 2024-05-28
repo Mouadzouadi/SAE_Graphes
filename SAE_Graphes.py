@@ -185,7 +185,7 @@ def distance(G,u,v):
 
 
 def centralite(G, u):
-    """Fonction renvoyant la centralité de l'acteur u dans le graphe G. La fonction renvoie None si u est absent du graphe.
+    """Fonction renvoyant la centralité de l'acteur u dans le graphe G par rapport à la plus grande distance qui le sépare d'un autre acteur. La fonction renvoie None si u est absent du graphe.
 
     Args:
         G (Graphe): le graphe
@@ -208,3 +208,18 @@ def centralite(G, u):
     return centralite
 
 #print(centralite(G,"Jennifer Salt"))
+
+    
+def centre_holywood(G):
+    """Fonction renvoyant l'acteur le plus central du graphe G par rapport au minimum de centralite par acteur .
+    
+    Parametres:
+        G: le graphe
+    Returns:
+        str: l'acteur le plus central du graphe G
+    Complexité: O(N(N+E)) où N est le nombre de sommets et E le nombre d'arêtes du graphe.
+    """
+    centralites = {acteur: centralite(G,acteur) for acteur in G.nodes}
+    return min(centralites, key=centralites.get)
+
+#print(centre_holywood(G)) 
