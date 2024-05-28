@@ -305,4 +305,21 @@ def centre_holywood(G):
     return min(centralites, key=centralites.get)
 
 #print(centre_holywood(G)) 
+def eloignement_max(G):
+    """Fonction renvoyant la distance maximale entre deux acteurs du graphe G .
+    Parametres:
+        G: le graphe
+    Returns:
+        int: la distance maximale entre deux acteurs du graphe G
 
+    Complexité: O(N³+N²*E)) où N est le nombre de sommets et E le nombre d'arêtes du graphe.
+    """
+    max_distance = 0
+    for u in G.nodes:
+        for v in G.nodes:
+            d = distance(G,u,v)
+            if d is not None and d > max_distance:
+                max_distance = d
+    return max_distance
+
+#print(eloignement_max(G))
