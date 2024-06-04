@@ -42,9 +42,11 @@ def json_vers_nx(chemin):
     return G
 
 G = json_vers_nx("data/data.json")
-plt.clf()
-nx.draw(G, with_labels=True)
-plt.show()
+
+#plt.clf()
+#nx.draw(G, with_labels=True)
+#plt.show()
+
 
                 
 
