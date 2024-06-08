@@ -1,4 +1,4 @@
-import SAE_Graphes as r 
+import requetes as r 
 import json
 import networkx as nx
 import matplotlib.pyplot as plt

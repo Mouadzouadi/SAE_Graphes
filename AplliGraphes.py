@@ -5,7 +5,7 @@ import tkinter as tk
 from tkinter import messagebox, simpledialog
 from tkinter import ttk
 import threading
-import SAE_Graphes as r
+import requetes as r
 
 class ApplicationOracle:
     def __init__(self, root):
